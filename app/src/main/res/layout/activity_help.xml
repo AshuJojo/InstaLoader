@@ -66,6 +66,18 @@
             android:background="@android:color/darker_gray"/>
 
         <TextView
+            android:id="@+id/reportABug"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dim_8dp"
+            android:textColor="#424242"
+            android:onClick="openBugReport"
+            android:layout_below="@id/feedbackTextView"
+            android:text="@string/report_a_bug"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:textSize="24sp" />
+
+        <TextView
             android:id="@+id/versionTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

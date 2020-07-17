@@ -21,8 +21,7 @@ public class HelpActivity extends AppCompatActivity {
     private String[] emailAddress = {"joblessjoker.dev@gmail.com"};
     private String subject = "InstaLoader Feedback";
     private String content = "Enter your feedback here!";
-
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +45,26 @@ public class HelpActivity extends AppCompatActivity {
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
         emailIntent.setType("text/plain");
         emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, content);
+        final PackageManager pm = this.getPackageManager();
+        final List<ResolveInfo> matches = pm.queryIntentActivities(emailIntent, 0);
+        ResolveInfo best = null;
+        for (final ResolveInfo info : matches) {
+            if (info.activityInfo.packageName.endsWith(".gm") || info.activityInfo.name.toLowerCase().contains("gmail")) {
+                best = info;
+            }
+        }
+        if (best != null) {
+            emailIntent.setClassName(best.activityInfo.packageName, best.activityInfo.name);
+        }
+        this.startActivity(emailIntent);
+    }
+
+    public void openBugReport(View view) {
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, emailAddress);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Bug Report");
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Report A Bug Here!");
         final PackageManager pm = this.getPackageManager();
         final List<ResolveInfo> matches = pm.queryIntentActivities(emailIntent, 0);
         ResolveInfo best = null;
