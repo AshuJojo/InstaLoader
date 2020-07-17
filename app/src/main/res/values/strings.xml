@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">InstaLoader-Download Instagram Image And Video</string>
+    <string name="app_display_name">InstaLoader</string>
+    <string name="enter_url_headline">ENTER URL</string>
+    <string name="bt_download">Download</string>
+    <string name="bt_paste_link">Paste Link</string>
+    <string name="menu_help">Help</string>
+    <string name="download_failed_text">Download Failed</string>
+    <string name="terms_amp_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="feedback">Feedback</string>
+    <string name="version">VERSION:</string>
+</resources>
