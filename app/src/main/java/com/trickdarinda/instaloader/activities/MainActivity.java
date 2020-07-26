@@ -22,12 +22,12 @@ import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 
 import com.bumptech.glide.Glide;
-import com.trickdarinda.instaloader.CheckNetwork;
-import com.trickdarinda.instaloader.HandleResponse;
 import com.trickdarinda.instaloader.R;
 import com.trickdarinda.instaloader.ResponseLoadingDialog;
 import com.trickdarinda.instaloader.asynctasks.CreateCallTask;
 import com.trickdarinda.instaloader.asynctasks.PostsDownloadTask;
+import com.trickdarinda.instaloader.helperclass.CheckNetwork;
+import com.trickdarinda.instaloader.helperclass.HandleResponse;
 import com.trickdarinda.instaloader.model.PostsResponse;
 
 import java.util.Objects;
@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Caption Copied!", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     /* Method to check storage persmision */
@@ -213,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
                                 //set the download cardView container layout visibility to visible
                                 downloadContainer.setVisibility(View.VISIBLE);
                                 responseHandler(response);
-                            }else{
+                            } else {
                                 Toast.makeText(MainActivity.this, "Private Account", Toast.LENGTH_SHORT).show();
                             }
                         }

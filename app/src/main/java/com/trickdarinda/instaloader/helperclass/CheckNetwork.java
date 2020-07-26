@@ -1,4 +1,4 @@
-package com.trickdarinda.instaloader;
+package com.trickdarinda.instaloader.helperclass;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

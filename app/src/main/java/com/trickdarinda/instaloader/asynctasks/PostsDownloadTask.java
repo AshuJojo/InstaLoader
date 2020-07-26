@@ -25,7 +25,7 @@ public class PostsDownloadTask extends AsyncTask<String, Integer, Boolean> {
     protected Boolean doInBackground(String... strings) {
         if (strings.length > 0) {
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(strings[0]));
-            request.setTitle("InstaLoader");
+            request.setTitle(fileName);
             request.setDescription("Downloading In Progress");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
             request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, subPath + fileName);

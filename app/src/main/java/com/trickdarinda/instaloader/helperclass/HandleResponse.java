@@ -1,4 +1,4 @@
-package com.trickdarinda.instaloader;
+package com.trickdarinda.instaloader.helperclass;
 
 import com.trickdarinda.instaloader.model.PostsResponse;
 
