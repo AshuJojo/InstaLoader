@@ -19,7 +19,7 @@
         android:layout_marginStart="@dimen/dim_16dp"
         android:layout_marginTop="@dimen/dim_8dp"
         android:fontFamily="@font/kelly_slab"
-        android:text="@string/app_display_name"
+        android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
         android:textColor="@color/design_default_color_on_primary" />
 
@@ -31,6 +31,7 @@
         android:onClick="openHelpActivity"
         android:layout_marginTop="20dp"
         android:layout_width="25dp"
+        android:contentDescription="@string/help_icon_content_description"
         android:layout_height="25dp"/>
 
     <ImageView
@@ -39,6 +40,7 @@
         android:src="@drawable/instagram_icon"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="@dimen/dim_16dp"
+        android:contentDescription="@string/instagram_icon_content_description"
         android:onClick="openInstagram"
         android:layout_width="25dp"
         android:layout_height="25dp"/>
@@ -74,9 +76,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/enterUrlTextView"
                 android:layout_margin="@dimen/dim_8dp"
+                android:autofillHints="@string/edit_text_hint"
+                android:inputType="textUri"
                 android:fontFamily="@font/kelly_slab"
                 android:background="@drawable/edit_textbox"
-                android:hint="TYPE YOUR URL HERE"
+                android:hint="@string/edit_text_hint"
                 android:padding="@dimen/dim_16dp"
                 android:singleLine="true" />
 
@@ -131,6 +135,7 @@
                     android:id="@+id/mediaImageView"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:contentDescription="@string/media_preview_content_description"
                     android:layout_margin="@dimen/dim_8dp"
                     android:src="@drawable/placeholder_image"
                     android:scaleType="centerCrop"/>
@@ -141,6 +146,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dim_12dp"
                     android:layout_marginEnd="4dp"
+                    android:contentDescription="@string/mutiple_icon_content_description"
                     android:visibility="invisible"
                     android:layout_alignEnd="@id/mediaImageView"
                     android:src="@drawable/multiple_icon" />
@@ -166,6 +172,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
+                        android:contentDescription="@string/play_icon_content_description"
                         android:src="@drawable/ic_play"
                         android:visibility="invisible" />
 
@@ -173,7 +180,7 @@
                         android:id="@+id/progressTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0%"
+                        android:text="@string/initial_progress"
                         android:layout_centerInParent="true"
                         android:textColor="@color/design_default_color_surface"
                         android:textSize="12sp"
@@ -208,7 +215,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/kelly_slab"
                 android:layout_toEndOf="@id/userProfilePic"
-                android:text="Loading..." />
+                android:text="@string/username_initial_text" />
 
             <TextView
                 android:id="@+id/captionTextView"
@@ -232,6 +239,7 @@
                 android:visibility="invisible"
                 android:layout_alignBottom="@id/mediaImageViewContainerLayout"
                 android:layout_alignParentEnd="true"
+                android:contentDescription="@string/copy_icon_content_description"
                 android:layout_marginEnd="@dimen/dim_12dp"
                 android:layout_marginBottom="@dimen/dim_16dp"
                 android:src="@drawable/ic_copy" />

@@ -6,9 +6,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.view.View;
 
 public class PostsDownloadTask extends AsyncTask<String, Integer, Boolean> {
+    private static final String TAG = "PostsDownloadTask";
     private DownloadManager dm;
     private String subPath;
     private String fileName;
@@ -75,6 +75,7 @@ public class PostsDownloadTask extends AsyncTask<String, Integer, Boolean> {
     @Override
     protected void onProgressUpdate(Integer... values) {
         super.onProgressUpdate(values);
+        //Send progress update
         downloadResponse.onDownloadRunning(values[0]);
     }
 

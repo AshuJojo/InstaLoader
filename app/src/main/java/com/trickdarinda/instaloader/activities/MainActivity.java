@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
     /* method to validate url */
     private boolean checkUrl(String url) {
         //REGULAR EXPRESSION for validation of url
-        String REGEX = "https://www.instagram.com/p/(.*?)/(.*?)";
+        String REGEX = "https://www.instagram.com/(p|reel|tv)/(.*?)/(.*?)";
         //pattern to check the url with REGULAR EXPRESSION
         Pattern postsUrlPattern = Pattern.compile(REGEX);
         //check the url with the help of matcher with pattern
@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
                     ResponseLoadingDialog dialog = new ResponseLoadingDialog(MainActivity.this);
                     dialog.startLoadingDialog();
                     //REGULAR EXPRESSION for validation of url
-                    String REGEX = "https://www.instagram.com/p/(.*?)/(.*?)";
+                    String REGEX = "https://www.instagram.com/(p|reel|tv)/(.*?)/(.*?)";
                     //pattern to check the url with REGULAR EXPRESSION
                     Pattern postsUrlPattern = Pattern.compile(REGEX);
                     //check the url with the help of matcher with pattern
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
 
                     String url = "";
                     if (matcher.matches()) {
-                        url = "https://www.instagram.com/p/" + matcher.group(1) + "/";
+                        url = "https://www.instagram.com/" + matcher.group(1) + "/" + matcher.group(2) + "/";
                     } else {
                         Toast.makeText(this, "Invalid URL", Toast.LENGTH_SHORT).show();
                     }
@@ -293,7 +293,8 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void onDownloadRunning(int progress) {
-                            downloadProgressTextView.setText(String.valueOf(progress) + "%");
+                            String showProgress = progress + "%";
+                            downloadProgressTextView.setText(showProgress);
                             downloadProgressBar.setProgress(progress);
                         }
 
@@ -333,7 +334,8 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onDownloadRunning(int progress) {
                             downloadProgressBar.setProgress(progress);
-                            downloadProgressTextView.setText(String.valueOf(progress) + "%");
+                            String showProgress = progress + "%";
+                            downloadProgressTextView.setText(showProgress);
                         }
 
                         @Override
@@ -376,7 +378,7 @@ public class MainActivity extends AppCompatActivity {
 
                             @Override
                             public void onDownloadSuccessful() {
-                                if (downloadProgressBar.getProgress() >= 99) {
+                                if (downloadProgressBar.getProgress() >= 91) {
                                     downloadProgressBar.setVisibility(View.INVISIBLE);
                                     downloadProgressTextView.setVisibility(View.INVISIBLE);
                                     if (hr.getMultipleMediaIsVid(0)) {
@@ -391,13 +393,14 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onDownloadRunning(int progress) {
                                 downloadProgressBar.setProgress(downloadProgressBar.getProgress() + (progress / hr.getNumOfEdges()));
-                                downloadProgressTextView.setText(String.valueOf(downloadProgressBar.getProgress()) + "%");
+                                String showProgress = downloadProgressBar.getProgress() + "%";
+                                downloadProgressTextView.setText(showProgress);
                             }
 
                             @Override
                             public void onDownloadFailed() {
                                 progressBarLayout.setVisibility(View.INVISIBLE);
-                                if (downloadProgressBar.getProgress() >= 99) {
+                                if (downloadProgressBar.getProgress() >= 91) {
                                     Toast.makeText(MainActivity.this, R.string.download_failed_text, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -419,7 +422,7 @@ public class MainActivity extends AppCompatActivity {
 
                             @Override
                             public void onDownloadSuccessful() {
-                                if (downloadProgressBar.getProgress() >= 99) {
+                                if (downloadProgressBar.getProgress() >= 91) {
                                     downloadProgressBar.setVisibility(View.INVISIBLE);
                                     downloadProgressTextView.setVisibility(View.INVISIBLE);
                                     if (hr.getMultipleMediaIsVid(0)) {
@@ -434,13 +437,14 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onDownloadRunning(int progress) {
                                 downloadProgressBar.setProgress(downloadProgressBar.getProgress() + (progress / hr.getNumOfEdges()));
-                                downloadProgressTextView.setText(String.valueOf(downloadProgressBar.getProgress()) + "%");
+                                String showProgress = downloadProgressBar.getProgress() + "%";
+                                downloadProgressTextView.setText(showProgress);
                             }
 
                             @Override
                             public void onDownloadFailed() {
                                 progressBarLayout.setVisibility(View.INVISIBLE);
-                                if (downloadProgressBar.getProgress() >= 99) {
+                                if (downloadProgressBar.getProgress() >= 91) {
                                     Toast.makeText(MainActivity.this, R.string.download_failed_text, Toast.LENGTH_SHORT).show();
                                 }
                             }
