@@ -29,7 +29,7 @@ public class HelpActivity extends AppCompatActivity {
 
         versionTextView = findViewById(R.id.versionTextView);
 
-        String versionText = "VERSION: v" + versionName;
+        String versionText = "Version: v" + versionName;
         versionTextView.setText(versionText);
     }
 
@@ -78,4 +78,19 @@ public class HelpActivity extends AppCompatActivity {
         }
         this.startActivity(emailIntent);
     }
+    /* Method to share InstaLoader app */
+    public void shareApp(View view) {
+        try {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "InstaLoader");
+            String shareMessage = "\nDownload Instagram IGTV, Reels and Posts. It's simple, free and secure. Download this app from the link below: \n\n";
+            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n";
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, "Select One"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

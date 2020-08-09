@@ -1,11 +1,19 @@
 package com.trickdarinda.instaloader.asynctasks;
 
 import android.app.DownloadManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Environment;
+import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
+
+import com.trickdarinda.instaloader.R;
 
 public class PostsDownloadTask extends AsyncTask<String, Integer, Boolean> {
     private static final String TAG = "PostsDownloadTask";
@@ -14,10 +22,16 @@ public class PostsDownloadTask extends AsyncTask<String, Integer, Boolean> {
     private String fileName;
     private PostsDownloadResponse downloadResponse;
 
-    public PostsDownloadTask(Context context, String subPath, String fileName, PostsDownloadResponse downloadResponse) {
+    public PostsDownloadTask(Context context) {
         dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+    }
+
+    public void setDownloadAttr(String subPath, String fileName) {
         this.subPath = subPath;
         this.fileName = fileName;
+    }
+
+    public void onDownloadResponse(PostsDownloadResponse downloadResponse) {
         this.downloadResponse = downloadResponse;
     }
 
@@ -59,6 +73,7 @@ public class PostsDownloadTask extends AsyncTask<String, Integer, Boolean> {
                             publishProgress(100);
                             return true;
                         } else if (c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_FAILED) {
+                            Log.e(TAG, "Reason: " + c.getInt(c.getColumnIndex(DownloadManager.COLUMN_REASON)));
                             return false;
                         } else if (c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_RUNNING) {
                             if (totalSize > 0) {
@@ -105,4 +120,5 @@ public class PostsDownloadTask extends AsyncTask<String, Integer, Boolean> {
 
         void onDownloadFailed();
     }
+
 }

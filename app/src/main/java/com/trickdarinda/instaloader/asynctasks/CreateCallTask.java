@@ -1,6 +1,7 @@
 package com.trickdarinda.instaloader.asynctasks;
 
 import android.os.AsyncTask;
+import android.os.Looper;
 
 import com.trickdarinda.instaloader.api.ApiClient;
 import com.trickdarinda.instaloader.model.PostsResponse;
@@ -15,20 +16,43 @@ public class CreateCallTask extends AsyncTask<String, Void, Void> {
     private onResponseListener responseListener = null;
 
     public CreateCallTask() {
+
     }
 
     public interface onResponseListener {
+        void onCallStart();
+
+        void onCallFinished();
+
         void onResponse(PostsResponse response);
 
         void onFailure(Throwable t);
     }
 
-    public void setOnResponseListener(onResponseListener responseListener) {
-        this.responseListener = responseListener;
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        super.onPostExecute(aVoid);
+        if (responseListener != null)
+            responseListener.onCallFinished();
+    }
+
+    public void setOnResponseListener(onResponseListener listener) {
+            this.responseListener = listener;
     }
 
     @Override
     protected Void doInBackground(String... strings) {
+        if (Looper.myLooper() == null) {
+            Looper.prepare();
+        }
+        if (responseListener != null)
+            responseListener.onCallStart();
         makeCall(strings[0]);
         return null;
     }
@@ -46,9 +70,10 @@ public class CreateCallTask extends AsyncTask<String, Void, Void> {
             public void onResponse(@NotNull Call<PostsResponse> call, @NotNull Response<PostsResponse> response) {
                 //If response is successful send the response to main Activity
                 if (response.isSuccessful()) {
-                    responseListener.onResponse(response.body());
+                    if (responseListener != null)
+                        responseListener.onResponse(response.body());
                 } else {
-                    responseListener.onResponse(null);
+                        responseListener.onResponse(null);
                 }
             }
 
@@ -56,7 +81,8 @@ public class CreateCallTask extends AsyncTask<String, Void, Void> {
             public void onFailure(@NotNull Call<PostsResponse> call, @NotNull Throwable t) {
                 //If an error occurred cancel the call
                 //and show a toast of call failure
-                responseListener.onFailure(t);
+                if (responseListener != null)
+                    responseListener.onFailure(t);
                 call.cancel();
             }
         });
