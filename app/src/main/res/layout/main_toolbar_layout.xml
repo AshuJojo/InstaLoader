@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@color/my_app_primary_color">
+
+    <ImageView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/title_text" />
+
+    <ImageView
+        android:id="@+id/helpIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="openHelpActivity"
+        android:layout_marginTop="@dimen/dim_16dp"
+        android:layout_marginEnd="@dimen/dim_16dp"
+        android:src="@drawable/help_icon" />
+
+
+    <ImageView
+        android:src="@drawable/share_icon"
+        android:layout_toStartOf="@id/helpIcon"
+        android:layout_width="wrap_content"
+        android:layout_marginEnd="@dimen/dim_16dp"
+        android:layout_marginTop="@dimen/dim_16dp"
+        android:onClick="shareApp"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
